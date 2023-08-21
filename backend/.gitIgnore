@@ -1,0 +1,12 @@
+/env/
+db.sqlite3
+user_character_db
+user_character_info
+.idea
+
+celerybeat-schedule*
+# Redis Volume
+redis-data*
+update_crypto_data.log
+crypto_data.csv
+*log

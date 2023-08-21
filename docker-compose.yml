@@ -1,0 +1,33 @@
+services:
+  redis:
+    image: redis
+    volumes:
+      - "./redis-data:/data"
+    command: redis-server --appendonly yes
+    restart: on-failure
+    ports:
+      - "6379:6379"
+  api:
+    build:
+      context: ./backend/
+    command: bash -c "python manage.py migrate && python manage.py runserver 0.0.0.0:8000"
+    volumes:
+      - ./backend/:/usr/src/app/backend/
+    expose:
+      - 8000
+
+  web:
+    build: 
+      context: ./client/
+    expose:
+      - 3000
+
+
+  nginx:
+    build:
+      context: ./nginx/
+    ports:
+      - 80:80
+    volumes:
+      - ./nginx/:/etc/nginx/conf.d/
+      - /var/log/nginx/:/var/log/nginx/
