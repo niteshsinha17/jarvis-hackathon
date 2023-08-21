@@ -4,21 +4,8 @@ import { contacts, slongList } from "../App";
 import { toast } from "react-toastify";
 import { BASE_URL } from "../constants/host";
 
-function generateRandomUUID() {
-  const digits = "0123456789";
-  let uuid = "";
-
-  for (let i = 0; i < 4; i++) {
-    const randomIndex = Math.floor(Math.random() * digits.length);
-    uuid += digits[randomIndex];
-  }
-
-  return uuid;
-}
-
 const JarvicSocket = () => {
   const socket = useRef(null);
-  const userId = useRef(generateRandomUUID());
   const songIndexRef = useRef(0);
   const callTimeoutId = useRef(null);
 
@@ -26,9 +13,9 @@ const JarvicSocket = () => {
 
   useEffect(() => {
     useId.current = Math.random().toString(36).substring(7);
-    socket.current = new WebSocket(
-      `ws://35.85.250.157/ws/jarvis/${userId.current}/`
-    );
+    const url = `ws://35.85.250.157/ws/jarvis/${state.username}/`;
+    socket.current = new WebSocket(url);
+    console.log(url);
     socket.current.onopen = () => {
       console.log("websocket connected");
     };

@@ -5,6 +5,18 @@ import { BASE_URL } from "../constants/host";
 
 export const jarvisContext = createContext(null);
 
+function generateRandomUUID() {
+  const digits = "0123456789";
+  let uuid = "";
+
+  for (let i = 0; i < 4; i++) {
+    const randomIndex = Math.floor(Math.random() * digits.length);
+    uuid += digits[randomIndex];
+  }
+
+  return uuid;
+}
+
 const JarvisContextProvider = (props) => {
   const [state, setState] = useState({
     loading: false,
@@ -22,7 +34,7 @@ const JarvisContextProvider = (props) => {
     serverMessages: [],
     callHistory: [],
     favSongs: [],
-    username: "nitesh",
+    username: generateRandomUUID(),
   });
 
   const getJarviseResponse = async (msg) => {
@@ -33,7 +45,7 @@ const JarvisContextProvider = (props) => {
 
     await axios
       .post(`${BASE_URL}/api/get-jarvis-response/`, {
-        username: "nitesh",
+        username: state.username,
         server_messages: state.serverMessages,
         message: msg,
         fav_songs: state.favSongs,
@@ -83,7 +95,7 @@ const JarvisContextProvider = (props) => {
     }));
     await axios
       .post(`${BASE_URL}/api/get-jarvis-response/`, {
-        username: "nitesh",
+        username: state.username,
         server_messages: state.serverMessages,
         message: message,
         fav_songs: state.favSongs,
