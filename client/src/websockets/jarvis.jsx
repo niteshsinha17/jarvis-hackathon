@@ -14,7 +14,9 @@ const JarvicSocket = () => {
 
   useEffect(() => {
     useId.current = Math.random().toString(36).substring(7);
-    socket.current = new WebSocket(`${BASE_URL}/ws/jarvis/${userId.current}/`);
+    socket.current = new WebSocket(
+      `ws://35.85.250.157/ws/jarvis/${userId.current}/`
+    );
     socket.current.onopen = () => {
       console.log("websocket connected");
     };

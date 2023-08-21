@@ -19,5 +19,5 @@ from django.urls import path
 from jarvis.views import JarvisView
 urlpatterns = [
     path("admin/", admin.site.urls),
-    path("get-jarvis-response/", JarvisView.as_view())
+    path("api/get-jarvis-response/", JarvisView.as_view())
 ]

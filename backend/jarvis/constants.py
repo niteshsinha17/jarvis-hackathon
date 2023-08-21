@@ -1,4 +1,4 @@
 
 
-OPEN_API_KEY = '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'
+OPEN_API_KEY = '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'
 
