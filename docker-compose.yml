@@ -13,6 +13,8 @@ services:
     command: bash -c "python manage.py migrate && python manage.py runserver 0.0.0.0:8000"
     volumes:
       - ./backend/:/usr/src/app/backend/
+    env_file:
+      - ./backend/.env
     expose:
       - 8000
 

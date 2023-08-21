@@ -1,4 +1,4 @@
+import os
 
-
-OPEN_API_KEY = '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'
+OPEN_API_KEY = os.environ.get('OPEN_API_KEY')
 
