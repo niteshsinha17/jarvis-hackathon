@@ -4,9 +4,21 @@ import { contacts, slongList } from "../App";
 import { toast } from "react-toastify";
 import { BASE_URL } from "../constants/host";
 
+function generateRandomUUID() {
+  const digits = "0123456789";
+  let uuid = "";
+
+  for (let i = 0; i < 4; i++) {
+    const randomIndex = Math.floor(Math.random() * digits.length);
+    uuid += digits[randomIndex];
+  }
+
+  return uuid;
+}
+
 const JarvicSocket = () => {
   const socket = useRef(null);
-  const userId = useRef("nitesh");
+  const userId = useRef(generateRandomUUID());
   const songIndexRef = useRef(0);
   const callTimeoutId = useRef(null);
 
